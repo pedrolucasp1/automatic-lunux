@@ -212,6 +212,7 @@ case $option in
         iptables -A INPUT -p tcp --dport 22 -j DROP
         ufw enable
         clear
+        read;;
 
     0)
         echo -e "$Green \n Saindo... $Color_Off"
