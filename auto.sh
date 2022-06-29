@@ -110,15 +110,15 @@ case $option in
         
         # Atualizar os pacotes e o sistema de atualização
         echo -e "$Blue  [ ATUALIZANDO ] $Color_Off $WhiteFlash  Atualizando os pacotes e atualizando a distribuição .. $Color_Off"
-        apt-get update -y && apt-get upgrade -y 1&> /dev/null 2&> /dev/null
+        apt-get update -y && apt-get upgrade -y 1> /dev/null 2> /dev/stdout
         clear
         
         # Instalar pré-requisitos
         echo -e "$Blue  [ INSTALANDO ] $Color_Off $WhiteFlash  Instalando os pré-requisitos .. $Color_Off"
-        apt install openssh-server iptables wget firmware-linux firmware-linux-free firmware-linux-nonfree vim bash-completion fzf grc nftables ufw fail2ban -y 1&> /dev/null 2&> /dev/null
+        apt install openssh-server iptables wget firmware-linux firmware-linux-free firmware-linux-nonfree vim bash-completion fzf grc nftables ufw fail2ban -y 1> /dev/null 2> /dev/stdout
         . /etc/os-release
         echo "deb http://deb.debian.org/debian ${VERSION_CODENAME}-backports main" > /etc/apt/sources.list.d/backports.list
-        apt-get update -y && apt-get upgrade -y 1&> /dev/null 2&> /dev/null
+        apt-get update -y && apt-get upgrade -y 1> /dev/null 2> /dev/stdout
         clear
         
         # Atualizar as configurações do bash
