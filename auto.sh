@@ -167,7 +167,6 @@ case $option in
         sed -i 's/#LoginGraceTime 2m/LoginGraceTime 10/g' /etc/ssh/sshd_config
         sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin prohibit-password/g' /etc/ssh/sshd_config
         sed -i '/#ListenAddress ::/aAllowUsers globotech' /etc/ssh/sshd_config
-        sed -i '/AllowUsers globotech/a ' /etc/ssh/sshd_config
         /etc/init.d/ssh restart
         clear
         
