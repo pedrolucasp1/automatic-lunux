@@ -110,15 +110,15 @@ case $option in
         
         # Atualizar os pacotes e o sistema de atualização
         echo -e "$Blue  [ ATUALIZANDO ] $Color_Off $WhiteFlash  Atualizando os pacotes e atualizando a distribuição .. $Color_Off"
-        apt-get update -y && apt-get upgrade -y 1> /dev/null 2> /dev/stdout
+        apt-get update -y && apt-get upgrade -y 1&> /dev/null 2&> /dev/null
         clear
         
         # Instalar pré-requisitos
         echo -e "$Blue  [ INSTALANDO ] $Color_Off $WhiteFlash  Instalando os pré-requisitos .. $Color_Off"
-        apt install openssh-server iptables wget firmware-linux firmware-linux-free firmware-linux-nonfree vim bash-completion fzf grc nftables ufw fail2ban -y 1> /dev/null 2> /dev/stdout
+        apt install openssh-server iptables wget firmware-linux firmware-linux-free firmware-linux-nonfree vim bash-completion fzf grc nftables ufw fail2ban -y 1&> /dev/null 2&> /dev/null
         . /etc/os-release
         echo "deb http://deb.debian.org/debian ${VERSION_CODENAME}-backports main" > /etc/apt/sources.list.d/backports.list
-        apt-get update -y && apt-get upgrade -y 1> /dev/null 2> /dev/stdout
+        apt-get update -y && apt-get upgrade -y 1&> /dev/null 2&> /dev/null
         clear
         
         # Atualizar as configurações do bash
@@ -159,7 +159,6 @@ case $option in
         echo "alias ping='grc ping'" >> /root/.bashrc
         echo "alias ps='grc ps'" >> /root/.bashrc
         echo "PS1='\${debian_chroot:+(\$debian_chroot)}\[\033[01;31m\]\u\[\033[01;34m\]@\[\033[01;33m\]\h\[\033[01;34m\][\[\033[00m\]\[\033[01;37m\]\w\[\033[01;34m\]]\[\033[01;31m\]\\$\[\033[00m\] '" >> /root/.bashrc
-        su -
         clear
         
         # Atualizar configurações ssh
