@@ -207,8 +207,7 @@ case $option in
         iptables -A INPUT -p tcp --dport 54222 -j DROP
         ufw default deny incoming
         ufw allow 54222
-        iptables -A INPUT -p tcp --dport 22 -j DROP
-        ufw enable
+        ufw enable & iptables -A INPUT -p tcp --dport 22 -j DROP
         clear
         read;;
 
