@@ -134,7 +134,6 @@ case $option in
         echo 'fi' >> /etc/bash.bashrc
         sed -i 's/"syntax on/syntax on/' /etc/vim/vimrc
         sed -i 's/"set background=dark/set background=dark/' /etc/vim/vimrc
-        sed -i "1,20d" /root/.vimrc
         echo "set showmatch" >> /root/.vimrc
         echo "set ts=4" >> /root/.vimrc
         echo "set sts=4" >> /root/.vimrc
