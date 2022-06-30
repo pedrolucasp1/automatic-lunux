@@ -172,26 +172,26 @@ case $option in
         # Atualizar configurações de segurança
         echo -e "$Blue  [ ATUALIZANDO ] $Color_Off $WhiteFlash  Atualizando as configurações de segurança .. $Color_Off"
         systemctl enable nftables
-        sed -i "1,20d" /etc/apt/sources.list
-        echo "#!/usr/sbin/nft -f" >> /etc/apt/sources.list
-        echo " " >> /etc/apt/sources.list
-        echo "flush ruleset" >> /etc/apt/sources.list
-        echo " " >> /etc/apt/sources.list
-        echo "table inet filter {" >> /etc/apt/sources.list
-        echo "        chain input {" >> /etc/apt/sources.list
-        echo "                type filter hook input priority 0;" >> /etc/apt/sources.list
-        echo "                ip saddr 177.53.196.22 tcp dport 54222 counter accept;" >> /etc/apt/sources.list
-        echo "                ip saddr 177.53.196.218 tcp dport 54222 counter accept;" >> /etc/apt/sources.list
-        echo "                tcp dport 54222 counter drop;" >> /etc/apt/sources.list
-        echo "                tcp dport 22 counter drop;" >> /etc/apt/sources.list
-        echo "        }" >> /etc/apt/sources.list
-        echo "        chain forward {" >> /etc/apt/sources.list
-        echo "                type filter hook forward priority 0;" >> /etc/apt/sources.list
-        echo "        }" >> /etc/apt/sources.list
-        echo "        chain output {" >> /etc/apt/sources.list
-        echo "                type filter hook output priority 0;" >> /etc/apt/sources.list
-        echo "        }" >> /etc/apt/sources.list
-        echo "}" >> /etc/apt/sources.list
+        sed -i "1,20d" /etc/nftables.conf
+        echo "#!/usr/sbin/nft -f" >> /etc/nftables.conf
+        echo " " >> /etc/nftables.conf
+        echo "flush ruleset" >> /etc/nftables.conf
+        echo " " >> /etc/nftables.conf
+        echo "table inet filter {" >> /etc/nftables.conf
+        echo "        chain input {" >> /etc/nftables.conf
+        echo "                type filter hook input priority 0;" >> /etc/nftables.conf
+        echo "                ip saddr 177.53.196.22 tcp dport 54222 counter accept;" >> /etc/nftables.conf
+        echo "                ip saddr 177.53.196.218 tcp dport 54222 counter accept;" >> /etc/nftables.conf
+        echo "                tcp dport 54222 counter drop;" >> /etc/nftables.conf
+        echo "                tcp dport 22 counter drop;" >> /etc/nftables.conf
+        echo "        }" >> /etc/nftables.conf
+        echo "        chain forward {" >> /etc/nftables.conf
+        echo "                type filter hook forward priority 0;" >> /etc/nftables.conf
+        echo "        }" >> /etc/nftables.conf
+        echo "        chain output {" >> /etc/nftables.conf
+        echo "                type filter hook output priority 0;" >> /etc/nftables.conf
+        echo "        }" >> /etc/nftables.conf
+        echo "}" >> /etc/nftables.conf
         systemctl restart nftables
         echo " " >> /etc/hosts.allow
         echo "sshd: 177.53.196.22" >> /etc/hosts.allow
@@ -206,7 +206,7 @@ case $option in
         iptables -A INPUT -p tcp --dport 54222 -j DROP
         ufw default deny incoming
         ufw allow 54222
-        ufw enable & iptables -A INPUT -p tcp --dport 22 -j DROP
+        ufw enable & y & iptables -A INPUT -p tcp --dport 22 -j DROP
         clear
         read;;
 
